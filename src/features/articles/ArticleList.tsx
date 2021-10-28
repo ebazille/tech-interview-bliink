@@ -10,7 +10,7 @@ function ArticleList({ articles }: ArticleListProps) {
   return (
     <div className={styles.wrapper}>
       {articles.map((article, index) => (
-        <ArticleCard article={article} key={index}/>
+        <ArticleCard article={article} key={index} />
       ))}
     </div>
   );

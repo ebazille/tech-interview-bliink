@@ -1,23 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { apiKey } from "../../constants";
 import { Article } from "./types";
 
 type FetchArticlesError = {
   message: string;
 };
 
-export const fetchArticles = createAsyncThunk<Article[], string, { rejectValue: FetchArticlesError }>(
-  "articles/fetch",
+export const fetchHeadlines = createAsyncThunk<
+  Article[],
+  string,
+  { rejectValue: FetchArticlesError }
+>(
+  "articles/fetchHeadlines",
 
   async (category: string, thunkApi) => {
-    const response = await fetch(
-      category !== 'global'
-        ? `https://newsapi.org/v2/top-headlines?country=fr&category=${category}&apiKey=a33d3209025c402087f8e4175e54053b`
-        : "https://newsapi.org/v2/top-headlines?country=fr&apiKey=a33d3209025c402087f8e4175e54053b"
+    const response: Response = await fetch(
+      `https://newsapi.org/v2/top-headlines?country=fr&category=${category}&apiKey=${apiKey}`
     );
 
     if (response.status !== 200) {
       return thunkApi.rejectWithValue({
-        message: "Failed to fetch todos.",
+        message: "Failed to fetch articles.",
       });
     }
 

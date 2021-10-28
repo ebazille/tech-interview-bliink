@@ -13,3 +13,12 @@ export type Article = {
   publishedAt: string;
   content: string;
 };
+
+export type Category =
+  | "business"
+  | "entertainment"
+  | "general"
+  | "health"
+  | "science"
+  | "sports"
+  | "technology";

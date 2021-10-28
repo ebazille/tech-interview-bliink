@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+}
+
+.wrapper {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 30rem;
+  padding: 0 5%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  text-align: left;
+  background-color: white;
+}
+
+.banner .background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  object-fit: cover;
+}
+
+.loaded .banner .background {
+  transform: scale(1);
+}
+
+.banner h1 {
+  color: #eee;
+  margin: 0;
+  line-height: 40rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 0.3rem black;
+}
+
+main {
+  width: 100%;
+  margin: 4rem 3rem;
+}
+
+main p {
+  margin: 0 0 3rem 0;
+}
+.backButton {
+  position: absolute;
+  top: 1.5em;
+  right: 96%;
+  z-index: 0;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Back_Arrow.svg/2048px-Back_Arrow.svg.png");
+  background-size: cover;
+  height: 2.5em;
+  width: 2.5em;
+  filter: brightness(0) invert(1) drop-shadow(0 0 0.75rem black);
+}
+
+.publishDate {
+  color: #777;
+}

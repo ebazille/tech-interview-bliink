@@ -1,8 +1,6 @@
 import { Route, Switch, Redirect } from "react-router-dom";
-import ArticlePage from "./pages/Article";
-
+import ArticlePage from "./features/article/ArticlePage";
 import ArticlesPage from "./features/articles/ArticlesPage";
-
 
 function Routes() {
   return (
@@ -11,7 +9,7 @@ function Routes() {
         <Redirect to="/home" />
       </Route>
       <Route path="/home" render={() => <ArticlesPage />} />
-      <Route path="/article/:id" render={() => <ArticlePage />} />
+      <Route path="/article" render={() => <ArticlePage />} />
     </Switch>
   );
 }

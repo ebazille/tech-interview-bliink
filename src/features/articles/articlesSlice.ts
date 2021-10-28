@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { fetchArticles } from "./fetchArticles";
+import { fetchHeadlines } from "./fetchArticles";
 
 type ArticleSource = {
   id: string | null;
@@ -34,30 +34,32 @@ export const articlesSlice = createSlice({
   name: "articles",
   initialState,
 
-  reducers: {
-    // addArticle(state: ArticlesState, action: PayloadAction<Article>) {
-    //   state.list.push(action.payload);
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchArticles.pending, (state) => {
+    builder.addCase(fetchHeadlines.pending, (state) => {
       state.status = "loading";
       state.error = null;
     });
 
-    builder.addCase(fetchArticles.fulfilled, (state, { payload }) => {
-      state.list = payload;
+    builder.addCase(fetchHeadlines.fulfilled, (state, { payload }) => {
+      state.list = payload.map((article) => {
+        return {
+          ...article,
+          title: article.title
+            .split("-")
+            .slice(0, -1)
+            .reduce((prev, curr) => prev + curr),
+        };
+      });
       state.status = "idle";
     });
 
-    builder.addCase(fetchArticles.rejected, (state, { payload }) => {
+    builder.addCase(fetchHeadlines.rejected, (state, { payload }) => {
       if (payload) state.error = payload.message;
       state.status = "idle";
     });
   },
 });
-
-// export const { addArticle } = articlesSlice.actions;
 
 export default articlesSlice.reducer;
 
